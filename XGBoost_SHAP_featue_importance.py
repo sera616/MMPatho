@@ -3,7 +3,7 @@
 
 def comEvaluation(y_true,y_pred):
     from sklearn.metrics import confusion_matrix
-    #####------------   定义：tn，fp, fn, tp  ------------###
+    #####------------   tn，fp, fn, tp  ------------###
     def tn(y_true, y_pred):
         return metrics.confusion_matrix(y_true, y_pred)[0, 0]
     def fp(y_true, y_pred):
@@ -17,9 +17,9 @@ def comEvaluation(y_true,y_pred):
     TP = tp(y_true, y_pred)
     FN = fn(y_true, y_pred)
     #sensitivity, recall, hit rate, true positive rate ：TPR = TP / (TP + FN)
-    SN = TP*1.0/(TP + FN)*1.0 ## 也就是：SN
+    SN = TP*1.0/(TP + FN)*1.0 ## 
     #specificity, true negative rate:TNR = TN / (TN + FP)
-    SP = TN / (TN + FP)*1.0  ## 也就是：SP
+    SP = TN / (TN + FP)*1.0  ## 
     #precision, prositive predictive value:PPV = TP / (TP + FP)
     precision = TP / (TP + FP)*1.0
     #negative predictive value:NPV = TN / (TN + FN)
@@ -74,10 +74,10 @@ fig = plt.figure(figsize=(50,20))
 #plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=0.25) 
 # shap.summary_plot(shap_values, X_train, show = False, max_display = 7 , plot_type="violin")
 xgboost.plot_tree(model, num_trees=0, rankdir='UT')
-plt.rcParams['savefig.dpi'] = 7200 #图片像素
-plt.rcParams['figure.dpi'] = 7200 #分辨率
+plt.rcParams['savefig.dpi'] = 7200 
+plt.rcParams['figure.dpi'] = 7200 
 plt.tight_layout()
-plt.savefig('../data/4--figures/5--XGBoost_tree.pdf', dpi=7200) #指定分辨率保存
+plt.savefig('../data/4--figures/5--XGBoost_tree.pdf', dpi=7200) 
 plt.show()
 print('finish !')
 import numpy as np
@@ -120,7 +120,7 @@ plt.rcParams['savefig.dpi'] = 300
 plt.rcParams['figure.dpi'] = 300 
 plt.tight_layout()
 shap.summary_plot(shap_values, X_train, show = False, max_display = 7 , plot_type="violin")
-plt.savefig('../data/4--figures/1--XGBoost_SHAP_feature_importance_top7.tif', dpi=300) #指定分辨率保存
+plt.savefig('../data/4--figures/1--XGBoost_SHAP_feature_importance_top7.tif', dpi=300) 
 print('finish !')
 shap.summary_plot(shap_values, plot_type="layered_violin", color='coolwarm')
 shap.summary_plot(shap_values, plot_type="layered_violin")
@@ -137,15 +137,15 @@ plt.rcParams.update({"font.size":10})
 fig = plt.figure(figsize=(11,10))
 # plt.legend(loc='upper center',bbox_to_anchor=(0.40,1.01), ncol=2, fontsize=18)   
 #plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=0.25) 
-plt.rcParams['savefig.dpi'] = 300 #图片像素
-plt.rcParams['figure.dpi'] = 300 #分辨率
+plt.rcParams['savefig.dpi'] = 300 
+plt.rcParams['figure.dpi'] = 300 
 plt.tight_layout()
 
 shap.force_plot(explainer.expected_value, shap_values[0,:], X_test.iloc[0,:], show = False, matplotlib=True)
-plt.savefig('../data/4--figures/2--XGBoost_SHAP_force_plot_0.tif', dpi=300) #指定分辨率保存
+plt.savefig('../data/4--figures/2--XGBoost_SHAP_force_plot_0.tif', dpi=300) 
 
 shap.force_plot(explainer.expected_value, shap_values[10,:], X_test.iloc[10,:], show = False, matplotlib=True)
-plt.savefig('../data/4--figures/2--XGBoost_SHAP_force_plot_10.tif', dpi=300) #指定分辨率保存
+plt.savefig('../data/4--figures/2--XGBoost_SHAP_force_plot_10.tif', dpi=300) 
 print('finish !')
 ## 多个force_plot_many
 xx = shap.force_plot(explainer.expected_value, shap_values[:1000,:], X_test.iloc[:1000,:])
@@ -153,5 +153,5 @@ shap.save_html('../data/4--figures/2--XGBoost_SHAP_force_plot_many.html',xx)
 
 for name in X_train.columns:
     shap.dependence_plot(name, shap_values, X_train, display_features=X_train, show = False)
-    plt.savefig('../data/4--figures/0--dependence_plot/'+ name + '_dependence_plot.tif', dpi=300) #指定分辨率保存
+    plt.savefig('../data/4--figures/0--dependence_plot/'+ name + '_dependence_plot.tif', dpi=300)
     
